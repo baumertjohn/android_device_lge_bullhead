@@ -1,0 +1,8 @@
+[
+  {
+    "remote": "crd",
+    "repository": "android_kernel_lge_bullhead",
+    "target_path": "kernel/lge/bullhead",
+    "revision": "6.0.0"
+  }
+]
