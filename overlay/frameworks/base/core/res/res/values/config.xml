@@ -394,7 +394,7 @@
         <item>com.google.android.apps.tycho</item>
     </string-array>
 
-    <!-- Doze: force using accelerometer as pick up sensor -->
-    <bool name="config_dozeUseAccelerometer">true</bool>
+    <!-- Doze: force using accelerometer as pick up sensor
+    <bool name="config_dozeUseAccelerometer">true</bool> -->
 
 </resources>
