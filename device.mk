@@ -39,7 +39,7 @@ PRODUCT_COPY_FILES += \
 # Audio
 PRODUCT_COPY_FILES += \
     device/lge/bullhead/audio_policy.conf:system/etc/audio_policy.conf \
-    device/lge/bullhead/audio_effects.conf:system/etc/audio_effects.conf \
+    device/lge/bullhead/audio_effects.conf:system/etc/audio_effects_vendor.conf \
     device/lge/bullhead/mixer_paths.xml:system/etc/mixer_paths.xml \
     device/lge/bullhead/audio_platform_info.xml:system/etc/audio_platform_info.xml
 
@@ -54,8 +54,8 @@ PRODUCT_COPY_FILES += \
     device/lge/bullhead/qpnp_pon.kl:system/usr/keylayout/qpnp_pon.kl
 
 # for launcher layout
-PRODUCT_PACKAGES += \
-    BullheadLayout
+#PRODUCT_PACKAGES += \
+#    BullheadLayout
 
 # Prebuilt input device calibration files
 PRODUCT_COPY_FILES += \
@@ -92,6 +92,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
     frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml \
+    frameworks/native/data/etc/android.software.verified_boot.xml:system/etc/permissions/android.software.verified_boot.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml
 
 # For SPN display
@@ -374,6 +375,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # limit dex2oat threads to improve thermals
 PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.boot-dex2oat-threads=4 \
     dalvik.vm.dex2oat-threads=2 \
     dalvik.vm.image-dex2oat-threads=4
 
@@ -394,16 +396,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     power.bullhead
 
-# Modem debugger
+# Modem debugger/misc
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PACKAGES += \
     QXDMLogger
 
 PRODUCT_COPY_FILES += \
-    device/lge/bullhead/init.bullhead.diag.rc.userdebug:root/init.bullhead.diag.rc
+    device/lge/bullhead/init.bullhead.diag.rc.userdebug:root/init.bullhead.diag.rc \
+    device/lge/bullhead/init.bullhead.misc.rc.userdebug:root/init.bullhead.misc.rc
 else
 PRODUCT_COPY_FILES += \
-    device/lge/bullhead/init.bullhead.diag.rc.user:root/init.bullhead.diag.rc
+    device/lge/bullhead/init.bullhead.diag.rc.user:root/init.bullhead.diag.rc \
+    device/lge/bullhead/init.bullhead.misc.rc.user:root/init.bullhead.misc.rc
 endif
 
 # setup dm-verity configs.
